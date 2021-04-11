@@ -13,13 +13,16 @@ public class MainViewController: UIViewController {
     var fTotalRecovered:[Double] = [0.0]
     var fDate:[String] = [""]
     
+    let view1 = UIView(frame: CGRect(x: 0, y: 0, width: 155, height: 630))
+    let view2 = UIView(frame: CGRect(x: 155, y: 0, width: 155, height: 630))
     let firstLayer = UIView(frame: CGRect(x: 0, y: 100, width: 310, height: 550))
     let appTitle = UILabel(frame: CGRect(x: 50, y: 60, width: 200, height: 25))
     let logo:UIImage = UIImage(named: "covidToday")!
-    let image:UIImage = UIImage(named: "background")!
     let logoView = UIImageView(frame: CGRect(x: 0, y: 50, width: 45, height: 45))
-    
+    let currentOutbreakLabel = UILabel(frame: CGRect(x: 10, y: 10, width: 200, height: 20))
+    let worldWideLbl = UILabel(frame: CGRect(x: 10, y: 30, width: 150, height: 20))
     let map = MKMapView()
+    let reloadButton = UIButton(frame: CGRect(x: 260, y: 15, width: 30, height: 30))
     
     let totalCase = UILabel(frame: CGRect(x: 10, y: 250, width: 135, height: 60))
     let newCase = UILabel(frame: CGRect(x: 165, y: 250, width: 135, height: 60))
@@ -45,23 +48,28 @@ public class MainViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
-        get()
+        //MARK:- Make change here!!!
+       // get()
         
         view.frame = CGRect(x: 0, y: 0, width: 310, height: 630)
-        
+        view1.backgroundColor = #colorLiteral(red: 0.8862745098, green: 0.4666666667, blue: 0.1098039216, alpha: 1)
+        view2.backgroundColor = #colorLiteral(red: 0.9019607843, green: 0.5803921569, blue: 0.137254902, alpha: 1)
         logoView.image = logo
         
-        map.frame = CGRect(x: 10, y: 20, width: 290, height: 180)
+        currentOutbreakLabel.text = "CURRENT OUTBREAK"
+        currentOutbreakLabel.font = UIFont(name: "Avenir Heavy", size: 17)
+        worldWideLbl.text = "Worldwide 🔽"
+        worldWideLbl.textColor = UIColor.blue
+        worldWideLbl.font = UIFont(name: "Avenir Medium", size: 14)
+        
+        reloadButton.setImage(UIImage(named: "earth"), for: .normal)
+        reloadButton.addTarget(self, action: #selector(reloadData), for: .touchUpInside)
+        
+        map.frame = CGRect(x: 10, y: 60, width: 290, height: 140)
         map.layer.cornerRadius = 20
         map.layer.borderWidth = 2
         map.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        //        map.region.center.latitude =
-        //            map.userLocation.coordinate.latitude
-        //        map.region.center.longitude =
-        //            map.userLocation.coordinate.longitude
-        //        map.region.span.latitudeDelta = 0.00725
-        //        map.region.span.longitudeDelta = 0.00725
+        
         
         appTitle.text = "COVID TODAY"
         appTitle.font = UIFont(name: "Avenir Heavy", size: 20)
@@ -81,12 +89,12 @@ public class MainViewController: UIViewController {
         totalDeath.text = "Total Death"
         newDeath.text = "New Death"
         
-        totalCaseCount.text = "03864"
-        newCaseCount.text = "034342"
-        totaRecoveredCount.text = "032442"
-        newRecoveredCount.text = "0324"
-        totalDeathCount.text = "023423"
-        newDeathCount.text = "02342"
+        totalCaseCount.text = "00000"
+        newCaseCount.text = "00000"
+        totaRecoveredCount.text = "00000"
+        newRecoveredCount.text = "00000"
+        totalDeathCount.text = "00000"
+        newDeathCount.text = "00000"
         
         updateLabelUI(totalCase, 10, .clear, "Avenir Medium", 14, .blue)
         updateLabelUI(newCase, 10, .clear, "Avenir Medium", 14, .blue)
@@ -116,7 +124,7 @@ public class MainViewController: UIViewController {
         totalDeath.layer.borderWidth = 0.5
         newDeath.layer.borderWidth = 0.5
         
-        btnView.backgroundColor = UIColor.orange
+        btnView.backgroundColor = #colorLiteral(red: 0.8882376552, green: 0.4656057954, blue: 0.1111704931, alpha: 1)
         btnView.layer.cornerRadius = 20
         
         buttobnUI(profileBtn, "person")
@@ -124,11 +132,17 @@ public class MainViewController: UIViewController {
         buttobnUI(helpBtn, "questionmark.circle")
         buttobnUI(hospialBtn, "cross")
         
+        diagnoseBtn.addTarget(self, action: #selector(openDiagnoseSection), for: .touchUpInside)
+        
         firstLayer.addSubview(map)
         firstLayer.addSubview(liveUpdatesLabel)
         firstLayer.addSubview(btnView)
+        firstLayer.addSubview(currentOutbreakLabel)
+        firstLayer.addSubview(worldWideLbl)
+        firstLayer.addSubview(reloadButton)
         
-        view.addSubview(UIImageView(image: image))
+        view.addSubview(view1)
+        view.addSubview(view2)
         view.addSubview(appTitle)
         view.addSubview(logoView)
         view.addSubview(firstLayer)
@@ -149,6 +163,15 @@ public class MainViewController: UIViewController {
         button.tintColor = UIColor.white
         
         btnView.addSubview(button)
+    }
+    
+    @objc func reloadData() {
+        self.get()
+        print("pressed")
+    }
+    
+    @objc func openDiagnoseSection() {
+        self.present(DiagnoseViewController(), animated: true, completion: nil)
     }
     
 }
