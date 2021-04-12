@@ -1,7 +1,7 @@
+
 import UIKit
 import MapKit
 import PlaygroundSupport
-
 
 public class MainViewController: UIViewController {
     
@@ -38,6 +38,7 @@ public class MainViewController: UIViewController {
     let totalDeathCount = UILabel(frame: CGRect(x: 10, y: 430, width: 135, height: 20))
     let newDeathCount = UILabel(frame: CGRect(x: 165, y: 430, width: 135, height: 20))
     let liveUpdatesLabel = UILabel(frame: CGRect(x: 10, y: 220, width: 180, height: 20))
+    let timeLabel = UILabel(frame: CGRect(x: 145, y: 220, width: 180, height: 20))
     
     let btnView = UIView(frame: CGRect(x: 10, y: 470, width: 290, height: 40))
     let profileBtn = UIButton(frame: CGRect(x: 30, y: 0, width: 40, height: 40))
@@ -109,6 +110,7 @@ public class MainViewController: UIViewController {
         updateLabelUI(newRecoveredCount, 0, .clear, "Avenir Medium", 10, .black)
         updateLabelUI(totalDeathCount, 0, .clear, "Avenir Medium", 10, .black)
         updateLabelUI(newDeathCount, 0, .clear, "Avenir Medium", 10, .black)
+        updateLabelUI(timeLabel, 0, .clear, "Avenir Medium", 14, .blue)
         
         totalCase.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         newCase.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -140,6 +142,7 @@ public class MainViewController: UIViewController {
         firstLayer.addSubview(currentOutbreakLabel)
         firstLayer.addSubview(worldWideLbl)
         firstLayer.addSubview(reloadButton)
+        firstLayer.addSubview(timeLabel)
         
         view.addSubview(view1)
         view.addSubview(view2)
@@ -255,6 +258,7 @@ extension MainViewController {
         newRecoveredCount.text = "\(Int(fNewRecovered[0]))"
         newDeathCount.text = "\(Int(fNewDeath[0]))"
         newCaseCount.text = "\(Int(fNewConfirmed[0]))"
+        timeLabel.text = "\(fDate[0])"
     }
     
 }

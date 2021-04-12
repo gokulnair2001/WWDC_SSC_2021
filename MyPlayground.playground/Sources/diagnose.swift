@@ -12,11 +12,11 @@ public class DiagnoseViewController: UIViewController {
     let closeBtn = UIButton(frame: CGRect(x: 260, y: 10, width: 20, height: 20))
     let headingLabel = UILabel(frame: CGRect(x: 10, y: 10, width: 180, height: 30))
     let subLabel = UILabel(frame: CGRect(x: 10, y: 40, width: 180, height: 20))
-    let inputImageView = UIImageView(frame: CGRect(x: 10, y: 70, width: 250, height: 200))
+    let inputImageView = UIImageView(frame: CGRect(x: 20, y: 100, width: 250, height: 200))
     let tapGesture = UITapGestureRecognizer()
-    let addExImageBtn = UIButton(frame: CGRect(x: 10, y: 290, width: 270, height: 30))
+    let addExImageBtn = UIButton(frame: CGRect(x: 10, y: 330, width: 270, height: 30))
     
-    let submitBtn = UIButton(frame: CGRect(x: 10, y: 500, width: 100, height: 40))
+    let submitBtn = UIButton(frame: CGRect(x: 95, y: 440, width: 100, height: 40))
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +72,7 @@ public class DiagnoseViewController: UIViewController {
     }
     
     @objc func addDummyImage() {
-        self.inputImageView.image = UIImage(systemName: "person")
+        self.inputImageView.image = UIImage(named: "xray")
     }
 }
 
