@@ -1,4 +1,3 @@
-
 import UIKit
 import MapKit
 import PlaygroundSupport
@@ -38,18 +37,18 @@ public class MainViewController: UIViewController {
     let totalDeathCount = UILabel(frame: CGRect(x: 10, y: 430, width: 135, height: 20))
     let newDeathCount = UILabel(frame: CGRect(x: 165, y: 430, width: 135, height: 20))
     let liveUpdatesLabel = UILabel(frame: CGRect(x: 10, y: 220, width: 180, height: 20))
-    let timeLabel = UILabel(frame: CGRect(x: 145, y: 220, width: 180, height: 20))
+    let timeLabel = UILabel(frame: CGRect(x: 140, y: 220, width: 180, height: 20))
     
     let btnView = UIView(frame: CGRect(x: 10, y: 470, width: 290, height: 40))
     let profileBtn = UIButton(frame: CGRect(x: 30, y: 0, width: 40, height: 40))
     let diagnoseBtn = UIButton(frame: CGRect(x: 90, y: 0, width: 40, height: 40))
     let helpBtn = UIButton(frame: CGRect(x: 160, y: 0, width: 40, height: 40))
-    let hospialBtn = UIButton(frame: CGRect(x: 220, y: 0, width: 40, height: 40))
-    
+    let gameCentreBtn = UIButton(frame: CGRect(x: 220, y: 0, width: 40, height: 40))
+   
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        //MARK:- Make change here!!!
+       
        // get()
         
         view.frame = CGRect(x: 0, y: 0, width: 310, height: 630)
@@ -132,9 +131,13 @@ public class MainViewController: UIViewController {
         buttobnUI(profileBtn, "person")
         buttobnUI(diagnoseBtn, "staroflife")
         buttobnUI(helpBtn, "questionmark.circle")
-        buttobnUI(hospialBtn, "cross")
+        buttobnUI(gameCentreBtn, "cross")
+        
+        gameCentreBtn.setImage(UIImage(systemName: "gamecontroller"), for: .normal)
         
         diagnoseBtn.addTarget(self, action: #selector(openDiagnoseSection), for: .touchUpInside)
+        helpBtn.addTarget(self, action: #selector(helpView), for: .touchUpInside)
+        gameCentreBtn.addTarget(self, action: #selector(openGameVC), for: .touchUpInside)
         
         firstLayer.addSubview(map)
         firstLayer.addSubview(liveUpdatesLabel)
@@ -175,6 +178,14 @@ public class MainViewController: UIViewController {
     
     @objc func openDiagnoseSection() {
         self.present(DiagnoseViewController(), animated: true, completion: nil)
+    }
+    
+    @objc func helpView() {
+        self.present(helpViewController(), animated: true, completion: nil)
+    }
+    
+    @objc func openGameVC() {
+        self.present(gameViewController(), animated: true, completion: nil)
     }
     
 }
@@ -265,3 +276,4 @@ extension MainViewController {
 
 let vc = MainViewController()
 PlaygroundPage.current.liveView = vc
+
