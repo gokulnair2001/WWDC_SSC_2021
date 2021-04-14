@@ -43,7 +43,7 @@ public class DiagnoseViewController: UIViewController {
         addExImageBtn.clipsToBounds = true
         addExImageBtn.addTarget(self, action: #selector(addDummyImage), for: .touchUpInside)
         
-        submitBtn.setTitle("Submit", for: .normal)
+        submitBtn.setTitle("DIAGNOSE", for: .normal)
         submitBtn.titleLabel?.font = UIFont(name: "Avenir Medium", size: 17)
         submitBtn.layer.cornerRadius = 10
         submitBtn.backgroundColor = #colorLiteral(red: 0.8862745098, green: 0.4666666667, blue: 0.1098039216, alpha: 1)
