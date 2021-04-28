@@ -15,13 +15,17 @@ public class DiagnoseViewController: UIViewController {
     let inputImageView = UIImageView(frame: CGRect(x: 20, y: 100, width: 250, height: 200))
     let tapGesture = UITapGestureRecognizer()
     let addExImageBtn = UIButton(frame: CGRect(x: 10, y: 330, width: 270, height: 30))
-    
+    let addImageLbl = UILabel(frame: CGRect(x: 20, y: 250, width: 50, height: 50))
     let submitBtn = UIButton(frame: CGRect(x: 95, y: 440, width: 100, height: 40))
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         view1.backgroundColor = #colorLiteral(red: 0.8862745098, green: 0.4666666667, blue: 0.1098039216, alpha: 1)
         view2.backgroundColor = #colorLiteral(red: 0.9019607843, green: 0.5803921569, blue: 0.137254902, alpha: 1)
+        
+        addImageLbl.text = "Add Image +"
+        addImageLbl.isHidden = false
+        addImageLbl.textColor = UIColor.black
         
         firstLayer.backgroundColor = UIColor.white
         firstLayer.layer.cornerRadius = 20
@@ -60,6 +64,7 @@ public class DiagnoseViewController: UIViewController {
         firstLayer.addSubview(inputImageView)
         firstLayer.addSubview(addExImageBtn)
         firstLayer.addSubview(submitBtn)
+        firstLayer.addSubview(addImageLbl)
         
         view.addSubview(view1)
         view.addSubview(view2)
@@ -73,6 +78,7 @@ public class DiagnoseViewController: UIViewController {
     
     @objc func addDummyImage() {
         self.inputImageView.image = UIImage(named: "xray")
+        addImageLbl.isHidden = true
     }
 }
 
@@ -102,6 +108,8 @@ extension DiagnoseViewController:  UIImagePickerControllerDelegate, UINavigation
 extension DiagnoseViewController {
     
     @objc func imageClassifier(){
+        addImageLbl.isHidden = false
+        inputImageView.image = UIImage(named: "addImage")
         
         var inputImage = [COVIDDetectorInput]()
         

@@ -1,3 +1,34 @@
+/*:
+ 
+ # COVID TODAY 🦠
+ ### COVID TODAY is an COVID Detection + World wide statistics and mental pressure relief app.
+ 
+ * So as we all know the pandemic hit hard to all of us. Everyone is undergoing various mental pressure and that to mainly about our personal health. Once in a day each and everyone of us feel like we have COVID though we don’t, this kind of thinking make us really tensed. So to overcome all this mental pressure and tension i have created this project called COVID TODAY.
+  
+ * So COVID TODAY provides you an COVID Detection kit which works on CoreML model. The ML model takes your chest X-Ray and applies its magic and gives you the result that, are there any chances of having COVID to you or not? I know the ML model cant be 100% accurate but still it can provide you an idea of your current situation. This app mainly focuses on reducing mental pressure by providing you easy, fast and reliable method of detection. Other than that the app provide world wide stats, games for reducing pressure etc. But due to some time constraint i was not able to implement the game section but tried to implement the major features in it.
+  
+  ## Working ⚙️
+  
+  * So as soon as the app gets launched you get a view of world wide stats which is fetched using an API. You can reload the data by tapping on the earth symbol.
+  
+  * Then once you click on the detection Button, you are taken to the COVID Detection area. There you need to upload your chest X-Ray. But to get you work easy right now i have already pre-uploaded a COVID POSITIVE patients X-Ray, such that by using the 'Add Preloaded Image' button you can get the image added their, but if you want to add an image from gallery then click on the image given and it will open the gallery, from where you can select your X-Ray.
+  
+  * Once you select the image , click on Diagnose to get the result.(Here you will get result as positive if you are using the preloaded image since the image belongs to a COVID positive patient.)
+  
+  ## Motive ❤️
+  
+  * The motive of the app is mainly to reduce mental pressure of people by providing them detection kit as well as COVID stats count and at the same time few games for reducing their stress. The app even consists of a guidelines zone where the user can get various guidelines of COVID.
+ 
+ ## Inspiration 🚀
+
+ * This idea came to my mind when I was thinking of how do covid detection really happens?, then i read an article where i found the first tage of COVID detection is done through chest XRay, so i thought why not try to make a ML model which helps to find result. Then when i made the model i thought of making an app which comprises of this feature and the rest is here.
+
+ ## Impact on Society 🌏
+
+ * This app helps you in solving two major problems of society, 1.Reduction in use of Carbon film & 2.Fast and secure detection. As the app requires your chest XRay, you dont need an hard copy of it just get an soft copy, upload it on app and your work is done. Thus this helps in avoiding use of carbon films and you can get your result within seconds.
+ 
+ */
+
 import UIKit
 import MapKit
 import PlaygroundSupport
@@ -44,12 +75,12 @@ public class MainViewController: UIViewController {
     let diagnoseBtn = UIButton(frame: CGRect(x: 90, y: 0, width: 40, height: 40))
     let helpBtn = UIButton(frame: CGRect(x: 160, y: 0, width: 40, height: 40))
     let gameCentreBtn = UIButton(frame: CGRect(x: 220, y: 0, width: 40, height: 40))
-   
+    
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-       
-       // get()
+        
+        get()
         
         view.frame = CGRect(x: 0, y: 0, width: 310, height: 630)
         view1.backgroundColor = #colorLiteral(red: 0.8862745098, green: 0.4666666667, blue: 0.1098039216, alpha: 1)
@@ -137,7 +168,6 @@ public class MainViewController: UIViewController {
         
         diagnoseBtn.addTarget(self, action: #selector(openDiagnoseSection), for: .touchUpInside)
         helpBtn.addTarget(self, action: #selector(helpView), for: .touchUpInside)
-        gameCentreBtn.addTarget(self, action: #selector(openGameVC), for: .touchUpInside)
         
         firstLayer.addSubview(map)
         firstLayer.addSubview(liveUpdatesLabel)
@@ -183,11 +213,6 @@ public class MainViewController: UIViewController {
     @objc func helpView() {
         self.present(helpViewController(), animated: true, completion: nil)
     }
-    
-    @objc func openGameVC() {
-        self.present(gameViewController(), animated: true, completion: nil)
-    }
-    
 }
 
 
